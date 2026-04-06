@@ -7,7 +7,7 @@ const RESTAURANT_DATA = {
     
     config: {
         contact: {
-            whatsapp: '+212 710388625'
+            whatsapp: '+212 606660913'
         },
         favicon: './assets/images/favicon.png',
         logo: './assets/images/logo.png'
@@ -15,7 +15,7 @@ const RESTAURANT_DATA = {
     
     translations: {
         en: {
-            restaurantName: 'Bistro Premium',
+            restaurantName: 'Aji ts7a7',
             tagline: 'Fine Dining Experience',
             homeTitle: 'Bistro Premium | Luxury Dining Experience',
             home: 'Home',
@@ -44,7 +44,16 @@ const RESTAURANT_DATA = {
                 extras: 'Extras',
                 removals: 'Removals',
                 close: 'Close',
-                total: 'Total'
+                total: 'Total',
+                cartTitle: 'Your Order',
+                whatsappMessage: 'Hello! I would like to place an order:',
+                placeOrder: 'Place Order',
+                emptyCart: 'Your cart is empty',
+                name: 'Name',
+                location: 'Location',
+                namePlaceholder: 'Enter your name',
+                locationPlaceholder: 'Enter your delivery address',
+                priceIntegrityWarning: 'Price is fixed upon order generation'
             }
         },
         ar: {
@@ -77,7 +86,16 @@ const RESTAURANT_DATA = {
                 extras: 'إضافات',
                 removals: 'حذف',
                 close: 'إغلاق',
-                total: 'الإجمالي'
+                total: 'الإجمالي',
+                cartTitle: 'طلبك',
+                whatsappMessage: 'مرحباً! أود أن أطلب:',
+                placeOrder: 'إرسال الطلب',
+                emptyCart: 'السلة فارغة',
+                name: 'الاسم',
+                location: 'الموقع',
+                namePlaceholder: 'أدخل اسمك',
+                locationPlaceholder: 'أدخل عنوان التوصيل',
+                priceIntegrityWarning: 'السعر ثابت عند إنشاء الطلب'
             }
         },
         fr: {
@@ -110,7 +128,16 @@ const RESTAURANT_DATA = {
                 extras: 'Suppléments',
                 removals: 'Retraits',
                 close: 'Fermer',
-                total: 'Total'
+                total: 'Total',
+                cartTitle: 'Votre Commande',
+                whatsappMessage: 'Bonjour! Je souhaiterais passer une commande:',
+                placeOrder: 'Passer la Commande',
+                emptyCart: 'Votre panier est vide',
+                name: 'Nom',
+                location: 'Emplacement',
+                namePlaceholder: 'Entrez votre nom',
+                locationPlaceholder: 'Entrez votre adresse de livraison',
+                priceIntegrityWarning: 'Le prix est fixé lors de la génération de la commande'
             }
         }
     },
@@ -124,7 +151,7 @@ const RESTAURANT_DATA = {
                 ar: 'بروشيتا متوسطية',
                 fr: 'Bruschetta Méditerranéenne'
             },
-            price: 45,
+            price: 55,
             image: 'images/bruschetta.jpg',
             customization: {
                 extras: [

@@ -1,4 +1,6 @@
 import RESTAURANT_DATA from './data.js';
+import validationService from './validation-service.js';
+import OrderInputComponent from './order-input-component.js';
 
 class RestaurantUI {
     constructor() {
@@ -10,6 +12,8 @@ class RestaurantUI {
         this.selectedExtras = new Set();
         this.selectedRemovals = new Set();
         this.cart = [];
+        this.orderInputComponent = new OrderInputComponent(validationService, this.data.translations[this.currentLang]);
+        this.orderCounter = parseInt(localStorage.getItem('orderCounter') || '1000');
     }
 
     init() {
@@ -391,14 +395,123 @@ class RestaurantUI {
         document.body.style.overflow = '';
     }
 
+    /**
+     * Generate unique order ID
+     * @returns {string} - Unique order ID
+     */
+    generateOrderId() {
+        this.orderCounter++;
+        localStorage.setItem('orderCounter', this.orderCounter.toString());
+        return `Order-#${this.orderCounter}`;
+    }
+
+    /**
+     * Create order summary for data integrity
+     * @param {object} orderData - Order data
+     * @param {number} grandTotal - Order total
+     * @returns {object} - Order summary
+     */
+    createOrderSummary(orderData, grandTotal) {
+        const orderId = this.generateOrderId();
+        const timestamp = new Date().toISOString();
+        
+        const summary = {
+            orderId,
+            timestamp,
+            customerName: orderData.name,
+            location: orderData.location,
+            coordinates: orderData.coordinates,
+            mapsUrl: orderData.mapsUrl,
+            items: this.cart.map(item => ({
+                id: item.id,
+                name: item.name,
+                quantity: item.quantity,
+                basePrice: item.basePrice,
+                finalPrice: item.finalPrice,
+                extras: item.extras,
+                removals: item.removals
+            })),
+            grandTotal,
+            currency: this.data.settings.currency,
+            status: 'pending'
+        };
+        
+        // Save to local storage for data integrity
+        this.saveOrderSummary(summary);
+        
+        return summary;
+    }
+
+    /**
+     * Save order summary to local storage
+     * @param {object} summary - Order summary
+     */
+    saveOrderSummary(summary) {
+        try {
+            const existingOrders = JSON.parse(localStorage.getItem('orderSummaries') || '[]');
+            existingOrders.push(summary);
+            
+            // Keep only last 100 orders to prevent storage bloat
+            if (existingOrders.length > 100) {
+                existingOrders.splice(0, existingOrders.length - 100);
+            }
+            
+            localStorage.setItem('orderSummaries', JSON.stringify(existingOrders));
+            console.log('Order summary saved:', summary);
+        } catch (error) {
+            console.error('Failed to save order summary:', error);
+        }
+    }
+
+    /**
+     * Get all saved order summaries
+     * @returns {array} - Array of order summaries
+     */
+    getOrderSummaries() {
+        try {
+            return JSON.parse(localStorage.getItem('orderSummaries') || '[]');
+        } catch (error) {
+            console.error('Failed to get order summaries:', error);
+            return [];
+        }
+    }
+
     placeFinalOrder() {
         if (this.cart.length === 0) return;
         
+        // Show order input modal
+        this.showOrderInputModal();
+    }
+
+    showOrderInputModal() {
+        // Create container for order input modal
+        const modalContainer = document.createElement('div');
+        modalContainer.id = 'order-input-container';
+        document.body.appendChild(modalContainer);
+        
+        // Initialize order input component
+        this.orderInputComponent.updateTranslations(this.data.translations[this.currentLang]);
+        this.orderInputComponent.init(modalContainer, (orderData) => {
+            this.processOrder(orderData);
+        });
+        
+        // Show modal
+        this.orderInputComponent.show();
+    }
+
+    processOrder(orderData) {
         const translations = this.data.translations[this.currentLang];
         const grandTotal = this.cart.reduce((total, item) => total + (item.finalPrice * item.quantity), 0);
         
-        // Build detailed order message
-        let message = `Hello ${this.data.translations[this.currentLang].restaurantName}, I want to place the following order:\n\n`;
+        // Create order summary for data integrity
+        const orderSummary = this.createOrderSummary(orderData, grandTotal);
+        
+        // Build detailed order message using dynamic translations
+        let message = `${translations.actions.whatsappMessage}\n\n`;
+        message += `${translations.actions.name}: ${orderData.name}\n`;
+        message += `${translations.actions.location}: ${orderData.location}\n`;
+        message += `Order ID: ${orderSummary.orderId}\n\n`;
+        message += `${translations.actions.cartTitle}:\n\n`;
         
         this.cart.forEach((item, index) => {
             message += `${index + 1}. ${item.name} - ${item.finalPrice} ${this.data.settings.currency}\n`;
@@ -416,6 +529,9 @@ class RestaurantUI {
         
         message += `\n${translations.actions.total}: ${grandTotal} ${this.data.settings.currency}`;
         
+        console.log('Final order message:', message);
+        console.log('Order summary saved:', orderSummary);
+        
         // Create WhatsApp link
         const whatsappUrl = `https://wa.me/${this.data.config.contact.whatsapp.replace(/[^\d]/g, '')}?text=${encodeURIComponent(message)}`;
         
@@ -427,8 +543,14 @@ class RestaurantUI {
         this.updateCartBadge();
         this.closeCartModal();
         
+        // Remove modal container
+        const modalContainer = document.getElementById('order-input-container');
+        if (modalContainer) {
+            document.body.removeChild(modalContainer);
+        }
+        
         // Show confirmation
-        this.showNotification('Order sent to WhatsApp!');
+        this.showNotification(`Order ${orderSummary.orderId} sent to WhatsApp!`);
     }
 
     showCustomization(itemId) {

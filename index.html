@@ -41,7 +41,7 @@
             <div class="hero-content">
                 <h2 class="hero-title" data-i18n="welcome">Welcome to our restaurant</h2>
                 <p class="hero-description" data-i18n="description">Experience culinary excellence with our carefully crafted dishes</p>
-                <button class="cta-button" data-i18n="order">Order Now</button>
+                <button class="cta-button" data-i18n="order" onclick="document.getElementById('menu').scrollIntoView({ behavior: 'smooth' })">Order Now</button>
             </div>
         </section>
 
@@ -175,6 +175,8 @@
         <span class="cart-badge">0</span>
     </button>
 
+    <script type="module" src="validation-service.js"></script>
+    <script type="module" src="order-input-component.js"></script>
     <script type="module" src="ui-loader.js"></script>
 </body>
 </html>
