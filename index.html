@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Premium restaurant dining experience">
+    <meta name="keywords" content="restaurant, dining, food, cuisine">
+    <title data-i18n="restaurantName">Bistro Premium</title>
+    <link rel="shortcut icon" href="./favicon.ico" type="image/x-icon">
+    <link rel="icon" href="./assets/images/favicon.png?v=2" id="faviconLink">
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Forum:wght@400&family=DM+Sans:wght@300;400;500;600;700&family=Cairo:wght@300;400;500;600;700&family=Almarai:wght@300;400;500;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header class="header">
+        <nav class="nav">
+            <div class="nav-container">
+                <div class="nav-brand">
+                    <h1 class="restaurant-name" data-i18n="restaurantName">Bistro Premium</h1>
+                    <p class="tagline" data-i18n="tagline">Fine Dining Experience</p>
+                </div>
+                <ul class="nav-menu">
+                    <li><a href="#home" class="nav-link" data-i18n="home">Home</a></li>
+                    <li><a href="#about" class="nav-link" data-i18n="about">About</a></li>
+                    <li><a href="#menu" class="nav-link" data-i18n="menu">Menu</a></li>
+                    <li><a href="#contact" class="nav-link" data-i18n="contact">Contact</a></li>
+                </ul>
+                <div class="language-selector">
+                    <button class="lang-btn" data-lang="en">EN</button>
+                    <button class="lang-btn" data-lang="ar">AR</button>
+                    <button class="lang-btn" data-lang="fr">FR</button>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main class="main">
+        <section id="home" class="hero">
+            <div class="hero-content">
+                <h2 class="hero-title" data-i18n="welcome">Welcome to our restaurant</h2>
+                <p class="hero-description" data-i18n="description">Experience culinary excellence with our carefully crafted dishes</p>
+                <button class="cta-button" data-i18n="order">Order Now</button>
+            </div>
+        </section>
+
+        <section id="about" class="about">
+            <div class="container">
+                <h2 class="section-title" data-i18n="about">About</h2>
+                <div class="about-content">
+                    <div class="about-text">
+                        <p data-i18n="description">Experience culinary excellence with our carefully crafted dishes</p>
+                        <p class="hours" data-i18n="hours">Open Daily: 11:00 AM - 11:00 PM</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="menu" class="menu">
+            <div class="container">
+                <h2 class="section-title" data-i18n="menu">Menu</h2>
+                <div class="menu-categories">
+                    <button class="category-btn active" data-category="all">All</button>
+                    <button class="category-btn" data-category="appetizers" data-i18n="categories.appetizers">Appetizers</button>
+                    <button class="category-btn" data-category="mains" data-i18n="categories.mains">Main Courses</button>
+                    <button class="category-btn" data-category="desserts" data-i18n="categories.desserts">Desserts</button>
+                    <button class="category-btn" data-category="beverages" data-i18n="categories.beverages">Beverages</button>
+                </div>
+                <div class="menu-grid" id="menuGrid">
+                    <!-- Menu items will be dynamically inserted here -->
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="contact">
+            <div class="container">
+                <h2 class="section-title" data-i18n="contact">Contact</h2>
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <h3>Phone</h3>
+                        <p data-i18n="phone">+212 5XX-XXX-XXX</p>
+                    </div>
+                    <div class="contact-item">
+                        <h3>Email</h3>
+                        <p data-i18n="email">info@bistropremium.ma</p>
+                    </div>
+                    <div class="contact-item">
+                        <h3>Address</h3>
+                        <p data-i18n="address">123 Avenue Hassan II, Casablanca, Morocco</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 <span data-i18n="restaurantName">Bistro Premium</span>. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Customization Modal -->
+    <div id="customizationModal" class="modal">
+        <div class="modal-overlay" onclick="restaurantUI.closeModal()"></div>
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title" data-i18n="actions.customize">Customize Order</h3>
+                <button class="modal-close" onclick="restaurantUI.closeModal()" data-i18n="actions.close">×</button>
+            </div>
+            <div class="modal-body">
+                <div class="dish-info">
+                    <h4 class="dish-name"></h4>
+                    <p class="dish-price"></p>
+                </div>
+                
+                <div class="customization-section">
+                    <h5 class="section-title-small" data-i18n="actions.extras">Extras</h5>
+                    <div class="options-grid" id="extrasOptions"></div>
+                </div>
+                
+                <div class="customization-section">
+                    <h5 class="section-title-small" data-i18n="actions.removals">Removals</h5>
+                    <div class="options-grid" id="removalsOptions"></div>
+                </div>
+                
+                <div class="order-summary">
+                    <div class="total-line">
+                        <span data-i18n="actions.total">Total:</span>
+                        <span class="total-price">0 DH</span>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" onclick="restaurantUI.closeModal()" data-i18n="actions.close">Close</button>
+                <button class="btn btn-primary" onclick="restaurantUI.confirmOrder()" data-i18n="actions.confirmOrder">Confirm Order</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Cart Summary Modal -->
+    <div id="cartModal" class="modal">
+        <div class="modal-overlay" onclick="restaurantUI.closeCartModal()"></div>
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">Cart Summary</h3>
+                <button class="modal-close" onclick="restaurantUI.closeCartModal()" data-i18n="actions.close">×</button>
+            </div>
+            <div class="modal-body">
+                <div class="cart-items" id="cartItems">
+                    <!-- Cart items will be dynamically inserted here -->
+                </div>
+                
+                <div class="order-summary">
+                    <div class="total-line">
+                        <span data-i18n="actions.total">Grand Total:</span>
+                        <span class="grand-total">0 DH</span>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" onclick="restaurantUI.closeCartModal()" data-i18n="actions.close">Close</button>
+                <button class="btn btn-primary" onclick="restaurantUI.placeFinalOrder()">Place Order</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Floating Cart Button -->
+    <button id="cartButton" class="floating-cart" onclick="restaurantUI.showCartSummary()">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M9 2L6 9L3 9V20a1 1 0 0 0 1 1h16a1 1 0 0 0 1-1v-11l-3-7z"/>
+            <path d="M3 9h18"/>
+            <path d="M9 9v6"/>
+        </svg>
+        <span class="cart-badge">0</span>
+    </button>
+
+    <script type="module" src="ui-loader.js"></script>
+</body>
+</html>

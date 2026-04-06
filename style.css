@@ -1,0 +1,1609 @@
+/* CSS Reset and Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'DM Sans', sans-serif;
+    line-height: 1.6;
+    color: var(--gray);
+    background-color: var(--black);
+    overflow-x: hidden;
+}
+
+/* Luxury Theme Variables */
+:root {
+    --gold: #d3c2bb;
+    --black: #050505;
+    --gray: #a5a5a5;
+    --gold-subtle: rgba(211, 194, 187, 0.1);
+    --gold-glow: rgba(211, 194, 187, 0.3);
+    --glass-bg: rgba(5, 5, 5, 0.7);
+    --glass-border: rgba(211, 194, 187, 0.1);
+}
+
+/* Font Imports */
+@import url('https://fonts.googleapis.com/css2?family=Forum:wght@400&family=DM+Sans:wght@300;400;500;600;700&family=Cairo:wght@300;400;500;600;700&family=Almarai:wght@300;400;500;700;800&display=swap');
+
+/* Typography */
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Forum', serif;
+    font-weight: 400;
+    color: var(--gold);
+    letter-spacing: 0.5px;
+}
+
+/* Arabic Typography */
+html[lang="ar"] {
+    font-family: 'Almarai', sans-serif;
+}
+
+html[lang="ar"] body {
+    font-family: 'Almarai', sans-serif;
+    line-height: 2.4; /* 1.5x the original 1.6 */
+}
+
+html[lang="ar"] h1,
+html[lang="ar"] h2,
+html[lang="ar"] h3,
+html[lang="ar"] h4,
+html[lang="ar"] h5,
+html[lang="ar"] h6 {
+    font-family: 'Almarai', sans-serif;
+    font-weight: 700;
+    letter-spacing: 0; /* Remove letter-spacing for Arabic */
+}
+
+html[lang="ar"] .nav-link,
+html[lang="ar"] .lang-btn,
+html[lang="ar"] .category-btn,
+html[lang="ar"] .btn {
+    font-family: 'Almarai', sans-serif;
+    letter-spacing: 0; /* Remove letter-spacing for Arabic */
+}
+
+html[lang="ar"] .restaurant-name {
+    font-family: 'Almarai', sans-serif;
+    font-weight: 800;
+    letter-spacing: 0;
+}
+
+html[lang="ar"] .tagline {
+    font-family: 'Almarai', sans-serif;
+    letter-spacing: 0;
+}
+
+html[lang="ar"] .menu-item-name,
+html[lang="ar"] .menu-item-price {
+    font-family: 'Almarai', sans-serif;
+    letter-spacing: 0;
+}
+
+html[lang="ar"] .section-title {
+    font-family: 'Almarai', sans-serif;
+    font-weight: 700;
+    letter-spacing: 0;
+}
+
+/* Container */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Header with Glassmorphism */
+.header {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    background: var(--glass-bg);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--glass-border);
+    transition: all 0.3s ease;
+}
+
+.nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.nav-brand {
+    text-align: start;
+}
+
+.restaurant-name {
+    font-family: 'Forum', serif;
+    font-size: 2.5rem;
+    font-weight: 400;
+    color: var(--gold);
+    margin-bottom: 0.25rem;
+    letter-spacing: 1px;
+}
+
+.tagline {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.85rem;
+    color: var(--gray);
+    font-weight: 300;
+    letter-spacing: 0.5px;
+}
+
+.nav-menu {
+    display: flex;
+    list-style: none;
+    gap: 3rem;
+}
+
+.nav-link {
+    text-decoration: none;
+    color: var(--gray);
+    font-weight: 400;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.95rem;
+    transition: color 0.3s ease;
+    position: relative;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.nav-link:hover {
+    color: var(--gold);
+}
+
+.nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: -8px;
+    left: 0;
+    width: 0;
+    height: 1px;
+    background: var(--gold);
+    transition: width 0.3s ease;
+}
+
+.nav-link:hover::after {
+    width: 100%;
+}
+
+/* Minimalist Language Switcher */
+.language-selector {
+    display: flex;
+    gap: 1.5rem;
+}
+
+.lang-btn {
+    background: none;
+    border: none;
+    color: var(--gray);
+    cursor: pointer;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.75rem;
+    font-weight: 400;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    padding: 0.5rem 0;
+    position: relative;
+    transition: color 0.3s ease;
+}
+
+.lang-btn::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 1px;
+    background: var(--gold);
+    transition: width 0.3s ease;
+}
+
+.lang-btn:hover,
+.lang-btn.active {
+    color: var(--gold);
+}
+
+.lang-btn.active::after {
+    width: 100%;
+}
+
+/* Small & Impactful Hero Section */
+.hero {
+    background: linear-gradient(135deg, var(--black), rgba(211, 194, 187, 0.05));
+    padding: 4rem 0;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle at center, rgba(211, 194, 187, 0.02) 0%, transparent 70%);
+    z-index: 1;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+.hero-title {
+    font-family: 'Forum', serif;
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    font-weight: 400;
+    color: var(--gold);
+    letter-spacing: 1px;
+}
+
+.hero-description {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 1rem;
+    margin-bottom: 2rem;
+    color: var(--gray);
+    font-weight: 300;
+    line-height: 1.5;
+    max-width: 400px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.cta-button {
+    background: var(--gold);
+    color: var(--black);
+    border: none;
+    padding: 0.75rem 2rem;
+    font-size: 0.9rem;
+    font-weight: 500;
+    font-family: 'DM Sans', sans-serif;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.cta-button:hover {
+    background: var(--gray);
+    transform: translateY(-2px);
+    box-shadow: 0 10px 30px rgba(211, 194, 187, 0.2);
+}
+
+/* Section Styles */
+section {
+    padding: 4rem 0;
+}
+
+.section-title {
+    font-family: 'Forum', serif;
+    font-size: 2rem;
+    text-align: center;
+    margin-bottom: 3rem;
+    color: var(--gold);
+    position: relative;
+    font-weight: 400;
+    letter-spacing: 1px;
+}
+
+.section-title::after {
+    content: '';
+    position: absolute;
+    bottom: -15px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 1px;
+    background: var(--gold);
+}
+
+/* About Section */
+.about {
+    background: rgba(211, 194, 187, 0.02);
+}
+
+.about-content {
+    text-align: center;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.about-text p {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 1rem;
+    color: var(--gray);
+    margin-bottom: 1rem;
+    font-weight: 300;
+    line-height: 1.6;
+}
+
+.hours {
+    font-weight: 400;
+    color: var(--gold);
+    font-size: 1.1rem;
+    font-family: 'Forum', serif;
+    letter-spacing: 1px;
+}
+
+/* Menu Section */
+.menu-categories {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    margin-bottom: 4rem;
+    flex-wrap: wrap;
+}
+
+.category-btn {
+    padding: 0.5rem 1.5rem;
+    border: 1px solid var(--gold-subtle);
+    background: transparent;
+    color: var(--gray);
+    cursor: pointer;
+    border-radius: 50px;
+    transition: all 0.3s ease;
+    font-weight: 400;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.category-btn:hover,
+.category-btn.active {
+    background: var(--gold);
+    color: var(--black);
+    border-color: var(--gold);
+}
+
+/* Luxury Menu Grid */
+.menu-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.menu-item {
+    background: var(--black);
+    border: 1px solid var(--gold-subtle);
+    border-radius: 12px;
+    overflow: hidden;
+    transition: all 0.4s ease;
+    position: relative;
+    animation: fadeInUp 0.6s ease forwards;
+    opacity: 0;
+}
+
+.menu-item:hover {
+    border-color: var(--gold);
+    box-shadow: 0 0 30px var(--gold-glow);
+    transform: translateY(-5px);
+}
+
+.menu-item-image {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    transition: transform 0.4s ease;
+    background: rgba(211, 194, 187, 0.05);
+}
+
+.menu-item:hover .menu-item-image {
+    transform: scale(1.05);
+}
+
+.menu-item-content {
+    padding: 2rem;
+}
+
+.menu-item-name {
+    font-family: 'Forum', serif;
+    font-size: 1.5rem;
+    color: var(--gold);
+    margin-bottom: 1rem;
+    font-weight: 400;
+    letter-spacing: 0.5px;
+}
+
+.menu-item-price {
+    font-family: 'Forum', serif;
+    font-size: 1.8rem;
+    color: var(--gold);
+    font-weight: 400;
+    margin-bottom: 1.5rem;
+    letter-spacing: 1px;
+}
+
+.menu-item-actions {
+    display: flex;
+    gap: 1rem;
+}
+
+.btn {
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    display: inline-block;
+    text-align: center;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.btn-primary {
+    background: var(--gold);
+    color: var(--black);
+}
+
+.btn-primary:hover {
+    background: var(--gray);
+    transform: translateY(-2px);
+}
+
+.btn-secondary {
+    background: transparent;
+    color: var(--gray);
+    border: 1px solid var(--gold-subtle);
+}
+
+.btn-secondary:hover {
+    background: var(--gold-subtle);
+    color: var(--gold);
+    border-color: var(--gold);
+}
+
+/* Contact Section */
+.contact {
+    background: rgba(211, 194, 187, 0.02);
+}
+
+.contact-info {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.contact-item {
+    text-align: center;
+    padding: 2.5rem;
+    background: var(--black);
+    border: 1px solid var(--gold-subtle);
+    border-radius: 12px;
+    transition: all 0.3s ease;
+}
+
+.contact-item:hover {
+    border-color: var(--gold);
+    box-shadow: 0 0 20px var(--gold-glow);
+}
+
+.contact-item h3 {
+    color: var(--gold);
+    margin-bottom: 1rem;
+    font-size: 1.2rem;
+    font-weight: 400;
+    letter-spacing: 1px;
+}
+
+.contact-item p {
+    color: var(--gray);
+    font-size: 1rem;
+    font-weight: 300;
+}
+
+/* Footer */
+.footer {
+    background: var(--black);
+    border-top: 1px solid var(--gold-subtle);
+    color: var(--gray);
+    text-align: center;
+    padding: 2rem 0;
+}
+
+/* Animations */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.menu-item {
+    animation-delay: calc(var(--item-index) * 0.1s);
+}
+
+/* RTL Support */
+[dir="rtl"] .nav-container {
+    flex-direction: row-reverse;
+}
+
+[dir="rtl"] .nav-menu {
+    flex-direction: row-reverse;
+}
+
+[dir="rtl"] .nav-brand {
+    text-align: end;
+}
+
+[dir="rtl"] .language-selector {
+    flex-direction: row-reverse;
+}
+
+[dir="rtl"] .menu-categories {
+    flex-direction: row-reverse;
+}
+
+[dir="rtl"] .menu-item-actions {
+    flex-direction: row-reverse;
+}
+
+/* RTL Menu Cards Layout - Image Right, Text Left */
+[dir="rtl"] .menu-item {
+    direction: rtl;
+}
+
+[dir="rtl"] .menu-item-content {
+    order: 1;
+}
+
+[dir="rtl"] .menu-item-image {
+    order: 2;
+}
+
+[dir="rtl"] .hero-content {
+    direction: rtl;
+}
+
+[dir="rtl"] .about-content {
+    direction: rtl;
+}
+
+[dir="rtl"] .contact-item {
+    direction: rtl;
+}
+
+/* Arabic-specific RTL improvements */
+html[lang="ar"] .section-title::after {
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+html[lang="ar"] .nav-link::after {
+    left: auto;
+    right: 0;
+}
+
+html[lang="ar"] .nav-link:hover::after {
+    width: 100%;
+    left: auto;
+    right: 0;
+}
+
+html[lang="ar"] .lang-btn::after {
+    left: auto;
+    right: 0;
+}
+
+html[lang="ar"] .lang-btn.active::after {
+    width: 100%;
+    left: auto;
+    right: 0;
+}
+
+/* Arabic navigation padding */
+html[lang="ar"] .nav-link {
+    padding: 0.5rem 1rem;
+}
+
+html[lang="ar"] .nav-container {
+    padding: 1.5rem 2rem;
+}
+
+/* Language switcher stability */
+.language-selector {
+    min-width: 120px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+html[lang="ar"] .language-selector {
+    min-width: 120px;
+}
+
+/* RTL Menu Item Layout Fix */
+[dir="rtl"] .menu-item {
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: stretch;
+}
+
+[dir="rtl"] .menu-item-image {
+    flex: 0 0 250px;
+    height: auto;
+}
+
+[dir="rtl"] .menu-item-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+/* Modal Styles */
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 10000;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+}
+
+.modal.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.modal-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(5, 5, 5, 0.8);
+    backdrop-filter: blur(5px);
+}
+
+.modal-content {
+    position: relative;
+    background: var(--black);
+    border: 1px solid var(--gold);
+    border-radius: 16px;
+    max-width: 500px;
+    width: 90%;
+    max-height: 90vh;
+    overflow-y: auto;
+    transform: scale(0.8);
+    transition: transform 0.3s ease;
+    box-shadow: 0 20px 60px rgba(211, 194, 187, 0.2);
+}
+
+.modal.active .modal-content {
+    transform: scale(1);
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 2rem;
+    border-bottom: 1px solid var(--gold-subtle);
+}
+
+.modal-title {
+    font-family: 'Forum', serif;
+    font-size: 1.5rem;
+    color: var(--gold);
+    margin: 0;
+    letter-spacing: 1px;
+}
+
+.modal-close {
+    background: none;
+    border: none;
+    color: var(--gray);
+    font-size: 2rem;
+    cursor: pointer;
+    padding: 0;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    transition: all 0.3s ease;
+}
+
+.modal-close:hover {
+    background: var(--gold-subtle);
+    color: var(--gold);
+}
+
+.modal-body {
+    padding: 2rem;
+}
+
+.dish-info {
+    text-align: center;
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--gold-subtle);
+}
+
+.dish-name {
+    font-family: 'Forum', serif;
+    font-size: 1.3rem;
+    color: var(--gold);
+    margin-bottom: 0.5rem;
+}
+
+.dish-price {
+    font-family: 'Forum', serif;
+    font-size: 1.5rem;
+    color: var(--gold);
+    margin: 0;
+}
+
+.customization-section {
+    margin-bottom: 2rem;
+}
+
+.section-title-small {
+    font-family: 'Forum', serif;
+    font-size: 1.1rem;
+    color: var(--gold);
+    margin-bottom: 1rem;
+    letter-spacing: 0.5px;
+}
+
+.options-grid {
+    display: grid;
+    gap: 1rem;
+}
+
+.option-item {
+    display: flex;
+    align-items: center;
+    padding: 1rem;
+    background: rgba(211, 194, 187, 0.05);
+    border: 1px solid var(--gold-subtle);
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.option-item:hover {
+    background: rgba(211, 194, 187, 0.1);
+    border-color: var(--gold);
+}
+
+.option-checkbox {
+    width: 20px;
+    height: 20px;
+    margin-right: 1rem;
+    accent-color: var(--gold);
+}
+
+.option-details {
+    flex: 1;
+}
+
+.option-name {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 1rem;
+    color: var(--gray);
+    margin-bottom: 0.25rem;
+}
+
+.option-price {
+    font-family: 'Forum', serif;
+    font-size: 0.9rem;
+    color: var(--gold);
+}
+
+.order-summary {
+    padding: 1.5rem;
+    background: rgba(211, 194, 187, 0.05);
+    border-radius: 8px;
+    margin-top: 2rem;
+}
+
+.total-line {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+
+.total-line span:first-child {
+    color: var(--gray);
+}
+
+.total-price {
+    font-family: 'Forum', serif;
+    color: var(--gold);
+    font-size: 1.4rem;
+}
+
+.modal-footer {
+    display: flex;
+    gap: 1rem;
+    padding: 2rem;
+    border-top: 1px solid var(--gold-subtle);
+}
+
+.modal-footer .btn {
+    flex: 1;
+    padding: 1rem;
+    font-size: 1rem;
+}
+
+/* RTL Modal Support */
+[dir="rtl"] .modal-header {
+    flex-direction: row-reverse;
+}
+
+[dir="rtl"] .option-checkbox {
+    margin-right: 0;
+    margin-left: 1rem;
+}
+
+[dir="rtl"] .modal-footer {
+    flex-direction: row-reverse;
+}
+
+/* Arabic Modal Typography */
+html[lang="ar"] .modal-title,
+html[lang="ar"] .dish-name,
+html[lang="ar"] .dish-price,
+html[lang="ar"] .section-title-small,
+html[lang="ar"] .total-price {
+    font-family: 'Almarai', sans-serif;
+    letter-spacing: 0;
+}
+
+html[lang="ar"] .option-name {
+    font-family: 'Almarai', sans-serif;
+    letter-spacing: 0;
+}
+
+/* Floating Cart Button */
+.floating-cart {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 60px;
+    height: 60px;
+    background: var(--gold);
+    border: none;
+    border-radius: 50%;
+    color: var(--black);
+    cursor: pointer;
+    box-shadow: 0 4px 20px rgba(211, 194, 187, 0.3);
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+}
+
+.floating-cart:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 25px rgba(211, 194, 187, 0.4);
+}
+
+.floating-cart svg {
+    width: 24px;
+    height: 24px;
+}
+
+.cart-badge {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    background: var(--accent-color, #e74c3c);
+    color: white;
+    border-radius: 50%;
+    width: 24px;
+    height: 24px;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    font-weight: 600;
+    font-family: 'DM Sans', sans-serif;
+}
+
+/* Cart Items Styling */
+.cart-items {
+    max-height: 400px;
+    overflow-y: auto;
+    margin-bottom: 1rem;
+}
+
+.cart-item {
+    background: rgba(211, 194, 187, 0.05);
+    border: 1px solid var(--gold-subtle);
+    border-radius: 8px;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    transition: all 0.3s ease;
+}
+
+.cart-item:hover {
+    border-color: var(--gold);
+}
+
+.cart-item-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.5rem;
+}
+
+.cart-item-name {
+    font-family: 'Forum', serif;
+    font-size: 1.1rem;
+    color: var(--gold);
+    margin: 0;
+}
+
+.remove-item {
+    background: none;
+    border: none;
+    color: var(--gray);
+    font-size: 1.5rem;
+    cursor: pointer;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    transition: all 0.3s ease;
+}
+
+.remove-item:hover {
+    background: var(--gold-subtle);
+    color: var(--gold);
+}
+
+.cart-item-details {
+    font-size: 0.9rem;
+}
+
+.cart-item-price {
+    font-family: 'Forum', serif;
+    font-size: 1rem;
+    color: var(--gold);
+    margin-bottom: 0.5rem;
+}
+
+.cart-item-extras,
+.cart-item-removals {
+    color: var(--gray);
+    margin: 0;
+    line-height: 1.4;
+}
+
+/* RTL Cart Support */
+[dir="rtl"] .floating-cart {
+    right: auto;
+    left: 20px;
+}
+
+[dir="rtl"] .cart-item-header {
+    flex-direction: row-reverse;
+}
+
+[dir="rtl"] .cart-badge {
+    right: auto;
+    left: -5px;
+}
+
+/* Arabic Cart Typography */
+html[lang="ar"] .cart-item-name,
+html[lang="ar"] .cart-item-price {
+    font-family: 'Almarai', sans-serif;
+    letter-spacing: 0;
+}
+
+html[lang="ar"] .cart-item-extras,
+html[lang="ar"] .cart-item-removals {
+    font-family: 'Almarai', sans-serif;
+    letter-spacing: 0;
+}
+
+/* Preloader Styles */
+.preloader,
+.loader,
+.preload {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--black);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    transition: opacity 0.5s ease, visibility 0.5s ease;
+}
+
+.preloader.loaded,
+.loader.loaded,
+.preload.loaded {
+    display: none;
+    opacity: 0;
+    visibility: hidden;
+}
+
+/* Mobile UI Overhaul */
+@media (max-width: 768px) {
+    /* Header & Navigation - Compact & Fixed */
+    .header {
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+        background: rgba(5, 5, 5, 0.95);
+        backdrop-filter: blur(10px);
+        border-bottom: 1px solid var(--gold-subtle);
+        height: 50px;
+    }
+    
+    .nav-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-direction: row;
+        gap: 0.5rem;
+        padding: 0.75rem 1rem;
+        position: relative;
+        height: 50px;
+    }
+    
+    .nav-brand {
+        text-align: center;
+        order: 1;
+        flex: 1;
+    }
+    
+    .restaurant-name {
+        font-size: 1.1rem;
+        margin: 0;
+        line-height: 1;
+    }
+    
+    .nav-menu {
+        display: none;
+        order: 2;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 0.5rem;
+        margin: 0;
+    }
+    
+    .language-selector {
+        order: 3;
+        display: flex;
+        gap: 0.25rem;
+        background: rgba(211, 194, 187, 0.1);
+        padding: 0.25rem;
+        border-radius: 15px;
+        border: 1px solid var(--gold-subtle);
+        position: absolute;
+        top: 50%;
+        right: 1rem;
+        transform: translateY(-50%);
+    }
+    
+    .lang-btn {
+        padding: 0.4rem 0.6rem;
+        font-size: 0.7rem;
+        min-width: auto;
+        border-radius: 12px;
+    }
+    
+    /* Hero Section - Eliminating Gap */
+    .hero {
+        height: 35vh;
+        max-height: 35vh;
+        padding: 15px 0;
+    }
+    
+    .hero-content {
+        text-align: center;
+    }
+    
+    .hero-title {
+        font-size: 1.8rem;
+        margin-bottom: 0.5rem;
+    }
+    
+    .hero-description {
+        font-size: 0.9rem;
+        margin-bottom: 1rem;
+    }
+    
+    .cta-button {
+        margin-top: 0.5rem;
+        padding: 0.75rem 1.5rem;
+        font-size: 0.9rem;
+    }
+    
+    /* Menu Categories - Horizontal Scroll */
+    .menu-categories {
+        display: flex;
+        justify-content: flex-start;
+        gap: 0.5rem;
+        margin-bottom: 1rem;
+        overflow-x: auto;
+        padding-bottom: 0.5rem;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+    }
+    
+    .category-btn {
+        padding: 0.4rem 0.8rem;
+        font-size: 0.8rem;
+        border-radius: 15px;
+        white-space: nowrap;
+        flex-shrink: 0;
+    }
+    
+    /* Menu Cards - Premium App Style */
+    .menu-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 8px;
+        padding: 0 1rem;
+    }
+    
+    .menu-item {
+        border-radius: 12px;
+        border: 1px solid #c5a47e;
+        overflow: hidden;
+        background: rgba(5, 5, 5, 0.8);
+        backdrop-filter: blur(5px);
+    }
+    
+    .menu-item-image {
+        height: 80px;
+        border-radius: 12px;
+    }
+    
+    .menu-item-content {
+        padding: 0.75rem;
+    }
+    
+    .menu-item-name {
+        font-size: 0.8rem;
+        margin-bottom: 0.5rem;
+    }
+    
+    .menu-item-price {
+        font-size: 0.9rem;
+        font-weight: 700;
+        color: var(--gold);
+        margin-bottom: 0.75rem;
+    }
+    
+    .menu-item-actions {
+        display: flex;
+        gap: 0.5rem;
+        margin-top: 0.75rem;
+        position: relative;
+    }
+    
+    .menu-item-actions .btn {
+        flex: 1;
+        padding: 0.5rem;
+        font-size: 0.8rem;
+        border-radius: 15px;
+        min-height: 36px;
+    }
+    
+    .add-to-cart-btn {
+        position: relative;
+    }
+    
+    .add-to-cart-btn::after {
+        content: '+';
+        position: absolute;
+        top: 50%;
+        right: 0.5rem;
+        transform: translateY(-50%);
+        font-size: 1rem;
+        font-weight: 700;
+    }
+    
+    .customize-btn .btn-text {
+        display: none;
+    }
+    
+    .customize-btn::before {
+        content: '⚙️';
+        font-size: 0.9rem;
+    }
+    
+    /* About Section - Eliminated */
+    .about {
+        display: none;
+    }
+    
+    /* No min-height restrictions */
+    section {
+        min-height: auto;
+    }
+    
+    /* Global CSS */
+    * {
+        box-sizing: border-box;
+    }
+    
+    /* Floating Cart Button */
+    .floating-cart {
+        width: clamp(50px, 12vw, 60px);
+        height: clamp(50px, 12vw, 60px);
+        bottom: clamp(15px, 4vw, 20px);
+        right: clamp(15px, 4vw, 20px);
+        background: var(--gold);
+        box-shadow: 0 4px 20px rgba(211, 194, 187, 0.4),
+                    0 0 20px rgba(211, 194, 187, 0.2);
+        border: 2px solid var(--gold);
+        animation: goldGlow 2s ease-in-out infinite alternate;
+    }
+    
+    @keyframes goldGlow {
+        0% {
+            box-shadow: 0 4px 20px rgba(211, 194, 187, 0.4),
+                       0 0 20px rgba(211, 194, 187, 0.2);
+        }
+        100% {
+            box-shadow: 0 6px 25px rgba(211, 194, 187, 0.6),
+                       0 0 30px rgba(211, 194, 187, 0.3);
+        }
+    }
+    
+    .floating-cart svg {
+        width: clamp(20px, 5vw, 24px);
+        height: clamp(20px, 5vw, 24px);
+    }
+    
+    .cart-badge {
+        width: clamp(18px, 4.5vw, 24px);
+        height: clamp(18px, 4.5vw, 24px);
+        font-size: clamp(9px, 2.5vw, 12px);
+        top: clamp(-3px, -1vw, -5px);
+        right: clamp(-3px, -1vw, -5px);
+        background: #e74c3c;
+        border: 2px solid var(--gold);
+    }
+    
+    /* Typography Improvements */
+    h1 {
+        font-size: clamp(1.5rem, 6vw, 2.5rem);
+        line-height: 1.1;
+        margin-bottom: clamp(0.5rem, 2vw, 1rem);
+    }
+    
+    h2 {
+        font-size: clamp(1.25rem, 5vw, 2rem);
+        line-height: 1.2;
+        margin-bottom: clamp(0.75rem, 3vw, 1.5rem);
+    }
+    
+    h3 {
+        font-size: clamp(1.1rem, 4.5vw, 1.5rem);
+        line-height: 1.3;
+    }
+    
+    h4 {
+        font-size: clamp(1rem, 4vw, 1.25rem);
+        line-height: 1.3;
+    }
+    
+    /* Arabic Text Contrast */
+    html[lang="ar"] {
+        color: #f0f0f0;
+    }
+    
+    html[lang="ar"] .hero-title,
+    html[lang="ar"] .menu-item-name,
+    html[lang="ar"] .section-title {
+        color: #f8f8f8;
+        text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+    }
+    
+    html[lang="ar"] .hero-description,
+    html[lang="ar"] .menu-item-description {
+        color: #e8e8e8;
+        text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+    }
+    
+    /* General Spacing */
+    .container {
+        padding: clamp(1rem, 4vw, 2rem);
+    }
+    
+    .section {
+        padding: clamp(2rem, 8vw, 4rem) 0;
+    }
+    
+    .about-content,
+    .menu-content {
+        margin-top: clamp(1rem, 4vw, 2rem);
+    }
+    
+    /* Modal Mobile Improvements */
+    .modal-content {
+        width: 95%;
+        margin: 1rem;
+        max-height: 90vh;
+    }
+    
+    .modal-header,
+    .modal-body,
+    .modal-footer {
+        padding: clamp(1rem, 4vw, 1.5rem);
+    }
+    
+    .modal-title {
+        font-size: clamp(1.1rem, 4.5vw, 1.5rem);
+    }
+    
+    .dish-name {
+        font-size: clamp(1rem, 4vw, 1.3rem);
+    }
+    
+    .dish-price {
+        font-size: clamp(1.1rem, 4.5vw, 1.5rem);
+    }
+    
+    .option-item {
+        padding: clamp(0.75rem, 3vw, 1rem);
+    }
+    
+    .option-name {
+        font-size: clamp(0.9rem, 3.5vw, 1rem);
+    }
+    
+    .modal-footer .btn {
+        padding: clamp(0.75rem, 3vw, 1rem);
+        font-size: clamp(0.85rem, 3.5vw, 1rem);
+        border-radius: 20px;
+        min-height: 44px;
+    }
+    
+    /* RTL Mobile Adjustments */
+    [dir="rtl"] .language-selector {
+        right: auto;
+        left: 1rem;
+    }
+    
+    [dir="rtl"] .floating-cart {
+        right: auto;
+        left: clamp(15px, 4vw, 20px);
+    }
+    
+    [dir="rtl"] .cart-badge {
+        right: auto;
+        left: clamp(-3px, -1vw, -5px);
+    }
+    
+    [dir="rtl"] .menu-item-actions {
+        flex-direction: row-reverse;
+    }
+}
+@media (max-width: 768px) {
+    .floating-cart {
+        width: 50px;
+        height: 50px;
+        bottom: 15px;
+        right: 15px;
+    }
+    
+    .floating-cart svg {
+        width: 20px;
+        height: 20px;
+    }
+    
+    .cart-badge {
+        width: 20px;
+        height: 20px;
+        font-size: 10px;
+        top: -3px;
+        right: -3px;
+    }
+    
+    [dir="rtl"] .floating-cart {
+        right: auto;
+        left: 15px;
+    }
+    
+    [dir="rtl"] .cart-badge {
+        right: auto;
+        left: -3px;
+    }
+}
+
+@media (max-width: 480px) {
+    .floating-cart {
+        width: 45px;
+        height: 45px;
+        bottom: 10px;
+        right: 10px;
+    }
+    
+    .floating-cart svg {
+        width: 18px;
+        height: 18px;
+    }
+    
+    .cart-badge {
+        width: 18px;
+        height: 18px;
+        font-size: 9px;
+        top: -2px;
+        right: -2px;
+    }
+    
+    [dir="rtl"] .floating-cart {
+        right: auto;
+        left: 10px;
+    }
+    
+    [dir="rtl"] .cart-badge {
+        right: auto;
+        left: -2px;
+    }
+}
+@media (max-width: 768px) {
+    .modal-content {
+        width: 95%;
+        margin: 1rem;
+    }
+    
+    .modal-header,
+    .modal-body,
+    .modal-footer {
+        padding: 1.5rem;
+    }
+    
+    .modal-title {
+        font-size: 1.3rem;
+    }
+    
+    .dish-name {
+        font-size: 1.2rem;
+    }
+    
+    .modal-footer .btn {
+        padding: 0.75rem;
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .modal-content {
+        width: 98%;
+        margin: 0.5rem;
+    }
+    
+    .modal-header,
+    .modal-body,
+    .modal-footer {
+        padding: 1rem;
+    }
+    
+    .modal-title {
+        font-size: 1.2rem;
+    }
+    
+    .dish-name {
+        font-size: 1.1rem;
+    }
+    
+    .option-item {
+        padding: 0.75rem;
+    }
+    
+    .modal-footer .btn {
+        padding: 0.75rem;
+        font-size: 0.85rem;
+    }
+}
+@media (max-width: 768px) {
+    .nav-container {
+        flex-direction: column;
+        gap: 1.5rem;
+        padding: 1rem;
+    }
+    
+    .nav-menu {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 2rem;
+    }
+    
+    .restaurant-name {
+        font-size: 2rem;
+    }
+    
+    .hero {
+        padding: 3rem 0;
+    }
+    
+    .hero-title {
+        font-size: 2rem;
+    }
+    
+    .menu-categories {
+        justify-content: center;
+        gap: 1rem;
+    }
+    
+    .menu-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+    
+    .contact-info {
+        grid-template-columns: 1fr;
+    }
+    
+    section {
+        padding: 3rem 0;
+    }
+    
+    [dir="rtl"] .nav-container {
+        flex-direction: column;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-title {
+        font-size: 1.8rem;
+    }
+    
+    .hero-description {
+        font-size: 0.9rem;
+    }
+    
+    .restaurant-name {
+        font-size: 1.8rem;
+    }
+    
+    .hero {
+        padding: 2rem 0;
+    }
+    
+    section {
+        padding: 2rem 0;
+    }
+}
